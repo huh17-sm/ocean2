@@ -2,6 +2,14 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const CourseCard = ({ title, level, index }) => {
+    const images = [
+        '/images/course_l1.png',
+        '/images/course_l2.png',
+        '/images/course_l3.png',
+        '/images/course_pro.png',
+        '/images/course_deep.png'
+    ];
+
     return (
         <div
             style={{
@@ -29,7 +37,7 @@ const CourseCard = ({ title, level, index }) => {
                 <motion.img
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.5 }}
-                    src={`https://source.unsplash.com/random/400x300?ocean,${index}`}
+                    src={images[index]}
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
             </div>
