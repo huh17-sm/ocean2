@@ -1,0 +1,312 @@
+{
+  "designSystem": {
+    "name": "BPCO Design System",
+    "version": "1.0.0",
+    "description": "Design system extracted from bpco.kr website - advertising agency landing page",
+    "colors": {
+      "primary": {
+        "black": {
+          "value": "#000000",
+          "rgb": "rgb(0, 0, 0)",
+          "usage": "Primary text, headings, high contrast elements"
+        },
+        "darkGray": {
+          "value": "#121212",
+          "rgb": "rgb(18, 18, 18)",
+          "usage": "Body text, secondary text"
+        },
+        "neonGreen": {
+          "value": "#00FF00",
+          "rgb": "rgb(0, 255, 0)",
+          "usage": "Accent color, highlights, interactive elements"
+        }
+      },
+      "neutral": {
+        "white": {
+          "value": "#FFFFFF",
+          "rgb": "rgb(255, 255, 255)",
+          "usage": "Background, cards, contrast"
+        },
+        "lightGray": {
+          "value": "#E1E1E1",
+          "rgb": "rgb(225, 225, 225)",
+          "usage": "Background sections, dividers"
+        },
+        "mediumGray": {
+          "value": "#C5C5C5",
+          "rgb": "rgb(197, 197, 197)",
+          "usage": "Borders, subtle elements"
+        },
+        "paleGray": {
+          "value": "#F1F1F1",
+          "rgb": "rgb(241, 241, 241)",
+          "usage": "Subtle backgrounds"
+        }
+      },
+      "transparency": {
+        "whiteOverlay": {
+          "value": "rgba(255, 255, 255, 0.4)",
+          "usage": "Navigation background, glassmorphism"
+        },
+        "blackOverlay": {
+          "value": "rgba(0, 0, 0, 0.1)",
+          "usage": "Subtle shadows, overlays"
+        },
+        "darkOverlay": {
+          "value": "rgba(0, 0, 0, 0.9)",
+          "usage": "Modal backgrounds, dark sections"
+        }
+      }
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": {
+          "name": "PPSupplySans",
+          "fallback": "Helvetica Neue, Pretendard, sans-serif",
+          "usage": "Body text, general content"
+        },
+        "mono": {
+          "name": "PPSupplyMono",
+          "fallback": "monospace",
+          "usage": "Code-style text, technical elements, labels"
+        },
+        "display": {
+          "name": "PPSupplySans",
+          "fallback": "sans-serif",
+          "usage": "Large headings, hero titles"
+        },
+        "decorative": {
+          "name": "Rock Salt",
+          "fallback": "cursive",
+          "usage": "Special decorative elements"
+        }
+      },
+      "fontSizes": {
+        "xs": {
+          "value": "11px",
+          "rem": "0.6875rem",
+          "usage": "Tiny labels, metadata"
+        },
+        "sm": {
+          "value": "13px",
+          "rem": "0.8125rem",
+          "usage": "Small text, captions"
+        },
+        "base": {
+          "value": "14px",
+          "rem": "0.875rem",
+          "usage": "Small body text"
+        },
+        "md": {
+          "value": "16px",
+          "rem": "1rem",
+          "usage": "Standard body text"
+        },
+        "lg": {
+          "value": "20px",
+          "rem": "1.25rem",
+          "usage": "Large body text, emphasized content"
+        },
+        "xl": {
+          "value": "22px",
+          "rem": "1.375rem",
+          "usage": "Subheadings"
+        },
+        "2xl": {
+          "value": "66.56px",
+          "rem": "4.16rem",
+          "usage": "Section titles"
+        },
+        "hero": {
+          "value": "243.2px",
+          "rem": "15.2rem",
+          "usage": "Hero titles, large display text"
+        }
+      },
+      "fontWeights": {
+        "regular": {
+          "value": "400",
+          "usage": "Body text, normal content"
+        },
+        "medium": {
+          "value": "500",
+          "usage": "Emphasized text, labels"
+        },
+        "bold": {
+          "value": "700",
+          "usage": "Headings, strong emphasis"
+        }
+      },
+      "lineHeight": {
+        "tight": "1.2",
+        "normal": "1.5",
+        "relaxed": "1.8"
+      },
+      "letterSpacing": {
+        "tight": "-0.02em",
+        "normal": "0",
+        "wide": "0.05em"
+      }
+    },
+    "spacing": {
+      "scale": {
+        "0": "0px",
+        "1": "4px",
+        "2": "8px",
+        "3": "12px",
+        "4": "16px",
+        "5": "20px",
+        "6": "24px",
+        "8": "32px",
+        "10": "40px",
+        "12": "48px",
+        "16": "64px",
+        "20": "80px",
+        "24": "96px",
+        "32": "128px",
+        "40": "160px",
+        "48": "192px"
+      }
+    },
+    "layout": {
+      "container": {
+        "maxWidth": "1600px",
+        "padding": "20px"
+      },
+      "grid": {
+        "columns": 12,
+        "gutter": "24px"
+      },
+      "breakpoints": {
+        "mobile": "320px",
+        "tablet": "768px",
+        "desktop": "1024px",
+        "wide": "1440px"
+      }
+    },
+    "components": {
+      "navigation": {
+        "position": "fixed",
+        "height": "40px",
+        "backgroundColor": "rgba(255, 255, 255, 0.4)",
+        "backdropFilter": "blur(10px)",
+        "padding": "0px",
+        "zIndex": 1000,
+        "fontFamily": "PPSupplyMono",
+        "fontSize": "17px",
+        "textTransform": "uppercase"
+      },
+      "button": {
+        "primary": {
+          "borderRadius": "20px",
+          "padding": "12px 24px",
+          "border": "2px solid #00FF00",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "fontSize": "16px",
+          "fontWeight": "500",
+          "hover": {
+            "backgroundColor": "#00FF00",
+            "color": "#000000"
+          }
+        },
+        "secondary": {
+          "borderRadius": "20px",
+          "padding": "12px 24px",
+          "border": "1px solid #000000",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "fontSize": "16px",
+          "fontWeight": "400"
+        }
+      },
+      "card": {
+        "backgroundColor": "#FFFFFF",
+        "borderRadius": "0px",
+        "padding": "40px",
+        "boxShadow": "none",
+        "border": "none"
+      },
+      "section": {
+        "padding": "80px 20px",
+        "marginBottom": "0px"
+      }
+    },
+    "effects": {
+      "shadows": {
+        "none": "none",
+        "subtle": "0 2px 4px rgba(0, 0, 0, 0.1)",
+        "medium": "0 4px 8px rgba(0, 0, 0, 0.15)",
+        "large": "0 8px 16px rgba(0, 0, 0, 0.2)"
+      },
+      "transitions": {
+        "fast": "150ms ease-in-out",
+        "normal": "300ms ease-in-out",
+        "slow": "500ms ease-in-out"
+      },
+      "animations": {
+        "fadeIn": {
+          "duration": "0.6s",
+          "easing": "ease-in-out"
+        },
+        "slideUp": {
+          "duration": "0.8s",
+          "easing": "cubic-bezier(0.4, 0, 0.2, 1)"
+        },
+        "parallax": {
+          "enabled": true,
+          "speed": "0.5"
+        }
+      }
+    },
+    "designPrinciples": {
+      "visualStyle": [
+        "Minimalist and clean aesthetic",
+        "High contrast (black on light backgrounds)",
+        "Bold typography with large scale variations",
+        "Monospace font for technical/modern feel",
+        "Neon green as primary accent color",
+        "Generous whitespace and breathing room"
+      ],
+      "layoutPatterns": [
+        "Full-width hero sections",
+        "Large typography overlays on images",
+        "Asymmetric text layouts",
+        "Vertical rhythm emphasis",
+        "Fixed navigation with transparency",
+        "Smooth scroll interactions"
+      ],
+      "interactionDesign": [
+        "Smooth scroll animations",
+        "Parallax effects on scroll",
+        "Fade-in animations for content",
+        "Canvas-based interactive elements",
+        "Hover states on interactive elements"
+      ]
+    },
+    "iconography": {
+      "style": "Line-based, minimal",
+      "strokeWidth": "1-2px",
+      "examples": [
+        "Globe icon (wireframe style)",
+        "Star/sparkle decorative elements",
+        "Checkered pattern accents",
+        "Simple geometric shapes"
+      ]
+    },
+    "imagery": {
+      "treatment": [
+        "High quality photography",
+        "Grayscale or desaturated tones preferred",
+        "Full-bleed images",
+        "Text overlays on images",
+        "Subtle texture overlays (grain effect)"
+      ],
+      "aspectRatios": {
+        "hero": "16:9",
+        "card": "4:3",
+        "thumbnail": "1:1"
+      }
+    }
+  }
+}

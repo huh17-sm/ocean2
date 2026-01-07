@@ -1,0 +1,122 @@
+:root {
+  /* Refined Palette covering BPCO Reference */
+  --color-primary: #F0EEE9;
+  /* Paper-like off-white */
+  --color-secondary: #FFFFFF;
+  --color-accent: #00FF00;
+  /* Neon Green */
+  --color-black: #000000;
+  --color-dark-gray: #121212;
+
+  /* Overlays */
+  --white-overlay: rgba(255, 255, 255, 0.4);
+  --black-overlay: rgba(0, 0, 0, 0.1);
+
+  /* Typography */
+  --font-primary: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Space Grotesk', sans-serif;
+
+  /* Font Sizes - Massive Scale */
+  --fs-xs: 11px;
+  --fs-sm: 13px;
+  --fs-base: 14px;
+  --fs-md: 16px;
+  --fs-lg: 20px;
+  --fs-xl: 32px;
+  --fs-2xl: 64px;
+  --fs-hero: 15vw;
+  /* Responsive massive text */
+
+  /* Spacing */
+  --spacing-4: 16px;
+  --spacing-8: 32px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: none;
+  /* Hide default cursor */
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-primary);
+  color: var(--color-black);
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grain Overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Universal Layout Utilities */
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Button & Link Styles */
+a,
+button {
+  cursor: none;
+  /* Custom cursor handling */
+}
+
+/* Custom Selection Color */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-black);
+}
+
+/* Helper Classes */
+.dashed-border {
+  border: 1px dashed rgba(0, 0, 0, 0.3);
+}
+
+.pill {
+  border-radius: 9999px;
+}
+
+/* Kinetic Text Animation Helper */
+.kinetic-text {
+  white-space: nowrap;
+  will-change: transform;
+}
