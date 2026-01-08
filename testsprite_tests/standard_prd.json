@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "project": "Freediving Experience Web Application",
+    "date": "2025-12-30",
+    "prepared_by": "Software Development Manager"
+  },
+  "product_overview": "A responsive and engaging web application dedicated to promoting and educating users about freediving. It features dynamic visual elements like parallax and kinetic typography, a smooth scroll experience, detailed freediving course listings, a gallery of diving moments, and integrated surveys to gauge user feedback.",
+  "core_goals": [
+    "Provide an immersive and smooth user experience with modern UI features such as kinetic typography, parallax backgrounds, and smooth scrolling.",
+    "Offer comprehensive educational content about freediving, including philosophy, statistics, and available courses.",
+    "Enable user engagement through interactive features such as surveys and image galleries.",
+    "Ensure accessibility and responsiveness across devices and screen sizes.",
+    "Maintain consistent design system usage to improve maintainability and visual coherence."
+  ],
+  "key_features": [
+    "Responsive navigation bar that adapts to scroll and screen size with improved accessibility and potential hamburger menu support for mobile devices.",
+    "Hero section with parallax background, kinetic typography, and floating decorative elements to create a dynamic first impression.",
+    "Intro section explaining the philosophy and essential information about freediving.",
+    "Statistics section highlighting key freediving metrics to educate users effectively.",
+    "Courses section listing available freediving courses with detailed information to assist user decision-making.",
+    "Gallery section showcasing freediving moments to engage and inspire users visually.",
+    "Contact section providing contact details and communication forms for user inquiries.",
+    "Footer component containing relevant links and copyright information.",
+    "Custom cursor that replaces the default cursor, designed to integrate well with all interactive elements and accessible states.",
+    "Survey system allowing users to participate and view results to gather feedback and increase engagement.",
+    "Smooth scrolling and footer reveal implemented via Lenis for an enhanced browsing experience."
+  ],
+  "user_flow_summary": [
+    "User lands on the homepage; they are greeted by an engaging hero section with smooth scrolling and kinetic typography.",
+    "User navigates through different sections like Intro, Stats, Courses, Gallery, and Contact via the responsive navigation bar.",
+    "User explores detailed course offerings and views statistical insights about freediving.",
+    "User interacts with the gallery to view freediving images.",
+    "User completes surveys to provide feedback and reviews survey results.",
+    "User accesses contact information or submits inquiries through the contact form.",
+    "User experiences a consistent UI with custom cursor and responsive design across devices.",
+    "User footer visibility is smoothly managed to enhance overall experience."
+  ],
+  "validation_criteria": [
+    "Navigation bar responds correctly to scroll events and adapts to different screen sizes, including mobile devices with a functional hamburger menu.",
+    "All color schemes, spacing, fonts, and other style tokens strictly adhere to the design system without hardcoded values.",
+    "Inline styles are refactored into CSS classes or modules to improve maintainability and performance.",
+    "Custom cursor functions correctly across all interactive elements and does not hinder accessibility or keyboard navigation.",
+    "Images, including hero backgrounds, are optimized for web (e.g., WebP format) and load efficiently without blocking the rendering.",
+    "Accessibility standards are met, including proper alt attributes on images, visible focus rings during keyboard navigation, and overall usability.",
+    "Survey components load properly, accept user input, and display results accurately.",
+    "No broken links or missing assets exist, including favicon and asset references.",
+    "Responsive layouts are tested across multiple device sizes to ensure no visual or functional regressions."
+  ],
+  "code_summary": {
+    "tech_stack": [
+      "JavaScript",
+      "React",
+      "Vite",
+      "TailwindCSS",
+      "Framer Motion",
+      "Lenis"
+    ],
+    "features": [
+      {
+        "name": "App Entry",
+        "description": "Main application component handling layout, smooth scroll (Lenis), and footer reveal logic.",
+        "files": [
+          "src/App.jsx",
+          "src/main.jsx",
+          "src/index.css"
+        ]
+      },
+      {
+        "name": "Navigation",
+        "description": "Responsive navigation bar with scroll-aware visibility and links to sections.",
+        "files": [
+          "src/components/Navbar.jsx"
+        ]
+      },
+      {
+        "name": "Hero Section",
+        "description": "Hero section with parallax background, kinetic typography, and floating decorative elements.",
+        "files": [
+          "src/components/Hero.jsx"
+        ]
+      },
+      {
+        "name": "Intro Section",
+        "description": "Introduction section explaining the philosophy of freediving.",
+        "files": [
+          "src/components/Intro.jsx"
+        ]
+      },
+      {
+        "name": "Stats Section",
+        "description": "Section displaying key statistics.",
+        "files": [
+          "src/components/Stats.jsx"
+        ]
+      },
+      {
+        "name": "Courses Section",
+        "description": "List of available freediving courses with details.",
+        "files": [
+          "src/components/Courses.jsx"
+        ]
+      },
+      {
+        "name": "Gallery Section",
+        "description": "Image gallery showcasing freediving moments.",
+        "files": [
+          "src/components/Gallery.jsx"
+        ]
+      },
+      {
+        "name": "Contact Section",
+        "description": "Contact information and possibly a form.",
+        "files": [
+          "src/components/Contact.jsx"
+        ]
+      },
+      {
+        "name": "Footer",
+        "description": "Footer component with links and copyright info.",
+        "files": [
+          "src/components/Footer.jsx"
+        ]
+      },
+      {
+        "name": "Custom Cursor",
+        "description": "Custom cursor component to replace the default browser cursor.",
+        "files": [
+          "src/components/CustomCursor.jsx"
+        ]
+      },
+      {
+        "name": "Survey System",
+        "description": "Survey and result display components.",
+        "files": [
+          "src/components/Survey.jsx",
+          "src/components/SurveyResult.jsx"
+        ]
+      }
+    ]
+  }
+}

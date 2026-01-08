@@ -1,0 +1,425 @@
+[
+  {
+    "id": "TC001",
+    "title": "Navigation Bar Responsive Behavior",
+    "description": "Verify that the navigation bar adapts correctly to scroll events and screen size changes, including functionality of the hamburger menu on mobile devices.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load the homepage on a desktop screen size."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that the navigation bar is visible and displays all navigation links."
+      },
+      {
+        "type": "action",
+        "description": "Scroll down the page."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the navigation bar responds to scroll events by changing visibility/styling according to design."
+      },
+      {
+        "type": "action",
+        "description": "Resize the browser window to a mobile screen size (e.g., 375x667)."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that the navigation bar transforms into a hamburger menu."
+      },
+      {
+        "type": "action",
+        "description": "Click the hamburger menu."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that the navigation menu is expanded and navigation links are accessible."
+      },
+      {
+        "type": "action",
+        "description": "Click each navigation link in the expanded menu."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify page scrolls smoothly to the corresponding sections."
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Hero Section Dynamic Elements Functionality",
+    "description": "Verify that the hero section displays parallax backgrounds, kinetic typography, and floating decorative elements correctly with smooth animations.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load the homepage."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the parallax background moves as expected on scroll."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that kinetic typography animates according to specification."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm floating decorative elements animate smoothly without glitches."
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Intro Section Content Verification",
+    "description": "Ensure the Intro section properly displays the freediving philosophy and essential information with correct styling.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the Intro section."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that the philosophy text and essential information are present and readable."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify styling matches design system tokens for font, colors, and spacing."
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Statistics Section Display and Content Accuracy",
+    "description": "Verify that the Stats section displays key freediving metrics correctly with accessible styling.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the Stats section."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm that all statistics are displayed with correct values and units."
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure text and visual elements conform to accessibility standards including color contrast."
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Courses Section Courses Listing and Details",
+    "description": "Verify that the frediving courses listing shows all available courses with detailed information as specified.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the Courses section."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that a list of courses is visible."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that each course displays detailed information including title, description, duration, and price."
+      },
+      {
+        "type": "action",
+        "description": "Test interaction such as expanding or selecting a course if applicable."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the UI updates properly and no content is truncated or distorted."
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Gallery Section Image Display and Interaction",
+    "description": "Ensure gallery images are loaded properly, optimized, and user can interact with the gallery as expected.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the Gallery section."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify all gallery images load successfully in WebP or optimized format."
+      },
+      {
+        "type": "assertion",
+        "description": "Check each image has meaningful alt text for accessibility."
+      },
+      {
+        "type": "action",
+        "description": "Click on a gallery image if a lightbox or expanded view is supported."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the image is displayed enlarged and navigation controls work correctly."
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Contact Section Form Submission and Validation",
+    "description": "Verify contact form accepts valid inputs, validates input fields, and submits inquiries successfully.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the Contact section."
+      },
+      {
+        "type": "action",
+        "description": "Input valid data into all required fields."
+      },
+      {
+        "type": "action",
+        "description": "Submit the contact form."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify form is submitted and confirmation message or response is displayed."
+      },
+      {
+        "type": "action",
+        "description": "Input invalid data or leave required fields empty."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify proper validation errors are displayed preventing submission."
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Footer Component Content and Links",
+    "description": "Check that the footer displays all relevant links, copyright information, and behaves correctly on different devices.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Scroll to footer on desktop and mobile screen sizes."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify footer content is fully visible without layout issues."
+      },
+      {
+        "type": "assertion",
+        "description": "Check all links are present and clickable."
+      },
+      {
+        "type": "action",
+        "description": "Click each footer link."
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure navigation or external linking behaves correctly without errors."
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Custom Cursor Functionality and Accessibility",
+    "description": "Verify the custom cursor replaces the default cursor across the app and is accessible without interfering with keyboard navigation.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load the homepage and observe the cursor."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the custom cursor replaces the default cursor on all interactive elements."
+      },
+      {
+        "type": "action",
+        "description": "Navigate the app using keyboard (tab key)."
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure focus rings are visible and keyboard navigation is smooth."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify custom cursor does not interfere with accessibility states."
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Survey System Participation and Results Display",
+    "description": "Test that users can participate in surveys, submit valid responses, and view updated survey results accurately.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the survey section."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the survey loads correctly with question and answer options."
+      },
+      {
+        "type": "action",
+        "description": "Select valid responses in the survey form."
+      },
+      {
+        "type": "action",
+        "description": "Submit the survey."
+      },
+      {
+        "type": "assertion",
+        "description": "Check survey response acceptance and display of results."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify results reflect the submitted response accurately."
+      },
+      {
+        "type": "action",
+        "description": "Try submitting invalid or incomplete responses."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm validation errors prevent submission."
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Smooth Scrolling and Footer Reveal Behavior",
+    "description": "Validate that page scrolling is smooth via Lenis and the footer reveal behaves as designed during scroll events.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load the homepage."
+      },
+      {
+        "type": "action",
+        "description": "Scroll down the page using mouse wheel or trackpad."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm scrolling is smooth without jank or stutter."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that the footer reveals smoothly as user reaches the bottom of the page."
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Design System Compliance Verification",
+    "description": "Ensure all components strictly follow the design system for color schemes, spacing, fonts, and use CSS classes instead of inline styles.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Inspect all UI components for usage of color tokens, font sizes, and spacing values."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no hardcoded inline styles are present, and styles derive from CSS classes or modules."
+      },
+      {
+        "type": "assertion",
+        "description": "Check consistency of styling across all screen sizes."
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Image Optimization and Accessibility",
+    "description": "Verify that all images are optimized for web, load efficiently, and include proper alt attributes for accessibility.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Browse through pages containing images including hero backgrounds and gallery."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm images load quickly and are in WebP or other optimized formats."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify each image element has a meaningful alt attribute."
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Broken Links and Missing Assets Check",
+    "description": "Ensure there are no broken links or missing assets throughout the application, including favicon and referenced media.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Click on all internal and external links in navbar, footer, and content sections."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify links navigate correctly without 404 or errors."
+      },
+      {
+        "type": "action",
+        "description": "Inspect network requests for all assets during page load."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm no 404 or failed resource requests, including images and favicon."
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Multi-Device Responsive Layout Validation",
+    "description": "Test the application UI on various screen sizes and devices to ensure layouts and features render correctly without regression.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Test on desktop (e.g. 1920x1080), tablet (e.g. 768x1024), and mobile sizes (e.g. 375x667)."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that all sections render properly, navigation functions correctly, and no elements are cut off or overlapping."
+      },
+      {
+        "type": "action",
+        "description": "Rotate devices to landscape and portrait modes."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm consistent and usable UI in all orientations."
+      }
+    ]
+  }
+]

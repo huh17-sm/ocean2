@@ -32,7 +32,7 @@ const Hero = () => {
                     y: yImage,
                     scale: scaleImage,
                     zIndex: 0,
-                    backgroundImage: 'url("./images/hero_bg.png")',
+                    backgroundImage: 'url("/images/hero_bg.png")',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     filter: 'grayscale(100%) contrast(1.2)'
@@ -82,7 +82,7 @@ const Hero = () => {
 
                     <div style={{ maxWidth: '400px', textAlign: 'left' }}>
                         <p style={{ fontSize: '24px', fontWeight: 500, lineHeight: 1.2 }}>
-                            We specialize in creating distinctive underwater experiences that leave a lasting impression.
+                            수영을 못해도 OK! 당신의 두려움이 설렘으로 바뀌는 곳, 오션프리다이빙입니다.
                         </p>
                     </div>
                 </div>

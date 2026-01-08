@@ -2,9 +2,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
 
 const CustomCursor = () => {
-    const cursorRef = useRef(null);
     const [cursorText, setCursorText] = useState('');
     const [isHovering, setIsHovering] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     // Smooth mouse tracking
     const mouseX = useMotionValue(0);
@@ -15,9 +16,16 @@ const CustomCursor = () => {
     const smoothY = useSpring(mouseY, smoothOptions);
 
     useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+
         const moveMouse = (e) => {
             mouseX.set(e.clientX);
             mouseY.set(e.clientY);
+            if (!isVisible) setIsVisible(true);
         };
 
         const handleMouseOver = (e) => {
@@ -46,14 +54,16 @@ const CustomCursor = () => {
         window.addEventListener('mouseover', handleMouseOver);
 
         return () => {
+            window.removeEventListener('resize', checkMobile);
             window.removeEventListener('mousemove', moveMouse);
             window.removeEventListener('mouseover', handleMouseOver);
         };
-    }, [mouseX, mouseY]);
+    }, [mouseX, mouseY, isVisible]);
+
+    if (isMobile) return null;
 
     return (
         <motion.div
-            ref={cursorRef}
             style={{
                 position: 'fixed',
                 left: smoothX,
@@ -70,6 +80,7 @@ const CustomCursor = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 mixBlendMode: isHovering ? 'difference' : 'normal',
+                opacity: isVisible ? 1 : 0
             }}
             transition={{ duration: 0.2 }}
         >

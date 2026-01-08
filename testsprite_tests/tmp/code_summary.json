@@ -1,0 +1,92 @@
+{
+    "tech_stack": [
+        "JavaScript",
+        "React",
+        "Vite",
+        "TailwindCSS",
+        "Framer Motion",
+        "Lenis"
+    ],
+    "features": [
+        {
+            "name": "App Entry",
+            "description": "Main application component handling layout, smooth scroll (Lenis), and footer reveal logic.",
+            "files": [
+                "src/App.jsx",
+                "src/main.jsx",
+                "src/index.css"
+            ]
+        },
+        {
+            "name": "Navigation",
+            "description": "Responsive navigation bar with scroll-aware visibility and links to sections.",
+            "files": [
+                "src/components/Navbar.jsx"
+            ]
+        },
+        {
+            "name": "Hero Section",
+            "description": "Hero section with parallax background, kinetic typography, and floating decorative elements.",
+            "files": [
+                "src/components/Hero.jsx"
+            ]
+        },
+        {
+            "name": "Intro Section",
+            "description": "Introduction section explaining the philosophy of freediving.",
+            "files": [
+                "src/components/Intro.jsx"
+            ]
+        },
+        {
+            "name": "Stats Section",
+            "description": "Section displaying key statistics.",
+            "files": [
+                "src/components/Stats.jsx"
+            ]
+        },
+        {
+            "name": "Courses Section",
+            "description": "List of available freediving courses with details.",
+            "files": [
+                "src/components/Courses.jsx"
+            ]
+        },
+        {
+            "name": "Gallery Section",
+            "description": "Image gallery showcasing freediving moments.",
+            "files": [
+                "src/components/Gallery.jsx"
+            ]
+        },
+        {
+            "name": "Contact Section",
+            "description": "Contact information and possibly a form.",
+            "files": [
+                "src/components/Contact.jsx"
+            ]
+        },
+        {
+            "name": "Footer",
+            "description": "Footer component with links and copyright info.",
+            "files": [
+                "src/components/Footer.jsx"
+            ]
+        },
+        {
+            "name": "Custom Cursor",
+            "description": "Custom cursor component to replace the default browser cursor.",
+            "files": [
+                "src/components/CustomCursor.jsx"
+            ]
+        },
+        {
+            "name": "Survey System",
+            "description": "Survey and result display components.",
+            "files": [
+                "src/components/Survey.jsx",
+                "src/components/SurveyResult.jsx"
+            ]
+        }
+    ]
+}

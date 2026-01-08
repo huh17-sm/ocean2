@@ -37,9 +37,13 @@ const Survey = () => {
     const [answers, setAnswers] = useState([]);
     const [resultType, setResultType] = useState(null);
 
-    const handleStart = () => setStep(1);
+    const handleStart = () => {
+        console.log("Survey started");
+        setStep(1);
+    };
 
     const handleAnswer = (value) => {
+        console.log("Answered:", value);
         const newAnswers = [...answers, value];
         setAnswers(newAnswers);
 
@@ -48,7 +52,9 @@ const Survey = () => {
         } else {
             // Calculate result
             const countA = newAnswers.filter(a => a === 'A').length;
-            setResultType(countA >= 2 ? 'A' : 'B');
+            const res = countA >= 2 ? 'A' : 'B';
+            console.log("Result calculated:", res);
+            setResultType(res);
             setStep(questions.length + 1);
         }
     };
@@ -60,7 +66,7 @@ const Survey = () => {
     };
 
     return (
-        <div style={{ marginTop: '100px', position: 'relative', minHeight: '500px' }}>
+        <div style={{ marginTop: '100px', position: 'relative', minHeight: '500px', zIndex: 10 }}>
             <AnimatePresence mode="wait">
                 {step === 0 && (
                     <motion.div
@@ -68,33 +74,36 @@ const Survey = () => {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
-                        style={{ textAlign: 'center', padding: '80px 40px' }}
-                        className="dashed-border"
+                        style={{ textAlign: 'center', padding: '100px 40px', border: '1px solid var(--color-black)' }}
                     >
-                        <h3 style={{ fontSize: '42px', marginBottom: '20px' }}>
+                        <h3 style={{ fontSize: '42px', marginBottom: '20px', lineHeight: 1.2 }}>
                             7년 차 프리다이빙 강사가 제안하는<br />
-                            <span style={{ color: 'var(--color-accent)' }}>'나의 다이빙 잠재력 확인하기'</span>
+                            <span style={{ color: 'var(--color-accent)', WebkitTextStroke: '1px black' }}>'나의 다이빙 잠재력 확인하기'</span>
                         </h3>
-                        <p style={{ fontSize: '18px', opacity: 0.7, marginBottom: '40px' }}>
+                        <p style={{ fontSize: '18px', opacity: 0.7, marginBottom: '40px', fontWeight: 500 }}>
                             "수영을 못해도, 물이 무서워도 괜찮습니다. <br />
                             당신의 두려움이 설렘으로 바뀌는 가장 빠른 길을 찾아 드립니다."
                         </p>
-                        <button
+                        <motion.button
+                            whileHover={{ scale: 1.05, backgroundColor: 'var(--color-accent)', color: 'var(--color-black)' }}
+                            whileTap={{ scale: 0.95 }}
                             data-cursor-text="START"
                             onClick={handleStart}
                             style={{
-                                padding: '20px 40px',
+                                padding: '24px 60px',
                                 fontSize: '20px',
-                                fontWeight: 600,
+                                fontWeight: 900,
                                 backgroundColor: 'var(--color-black)',
                                 color: 'var(--color-primary)',
-                                border: '1px solid var(--color-black)',
+                                border: 'none',
                                 cursor: 'pointer',
-                                transition: 'all 0.3s ease'
+                                transition: 'all 0.3s cubic-bezier(0.23, 1, 0.32, 1)',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.05em'
                             }}
                         >
                             테스트 시작하기
-                        </button>
+                        </motion.button>
                     </motion.div>
                 )}
 

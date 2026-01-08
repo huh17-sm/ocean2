@@ -1,0 +1,16 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:5173",
+  "executionArgs": {
+    "projectName": "ocean2",
+    "projectPath": "/Users/heoseungmin/Desktop/homepage/ocean2",
+    "testIds": [],
+    "additionalInstruction": "",
+    "envs": {
+      "API_KEY": "sk-user-pfQs4yWCamaaz80jVC62JKdywa48SZSy59jjqR5elSdkrhx1Twhbn4LLK3PzUP7SIGiGAr_T0EGf7DAvZ6FHJ3d1BpUZbbHadoE_s7ZbFtPRbvordr2zk8p-1ugAmitIX_g"
+    }
+  },
+  "proxy": "http://ca2200a8-ea9a-4e40-8bb5-fd7a1f831a51:KYMCAdsLWRD7F2zU6stR4DJf51ElLxFL@tun.testsprite.com:8080"
+}

@@ -80,38 +80,44 @@ const SurveyResult = ({ type, onReset }) => {
 
             {/* CTA Buttons */}
             <div style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
-                <button 
-                    className="btn-primary" 
-                    style={{ 
-                        backgroundColor: 'var(--color-accent)', 
+                <a
+                    href="#contact"
+                    className="btn-primary"
+                    style={{
+                        backgroundColor: 'var(--color-accent)',
                         color: 'var(--color-black)',
                         padding: '16px 32px',
                         border: 'none',
                         cursor: 'pointer',
                         fontWeight: 700,
-                        fontSize: '16px'
+                        fontSize: '16px',
+                        textDecoration: 'none',
+                        display: 'inline-block'
                     }}
                 >
                     [진단 결과대로 상담하기]
-                </button>
-                <button 
-                    className="btn-outline" 
-                    style={{ 
+                </a>
+                <a
+                    href="#contact"
+                    className="btn-outline"
+                    style={{
                         border: '1px solid var(--color-primary)',
                         backgroundColor: 'transparent',
                         color: 'var(--color-primary)',
                         padding: '16px 32px',
                         cursor: 'pointer',
                         fontWeight: 700,
-                        fontSize: '16px'
+                        fontSize: '16px',
+                        textDecoration: 'none',
+                        display: 'inline-block'
                     }}
                 >
                     [맞춤 코스 바로 결제하기]
-                </button>
+                </a>
             </div>
 
             <div style={{ textAlign: 'center', marginTop: '40px' }}>
-                <button 
+                <button
                     onClick={onReset}
                     style={{ background: 'none', border: 'none', color: 'var(--color-primary)', opacity: 0.4, cursor: 'pointer', textDecoration: 'underline' }}
                 >
