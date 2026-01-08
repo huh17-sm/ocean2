@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useMemo } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, animate, useMotionValue } from 'framer-motion';
 
 const useWindowSize = () => {
@@ -11,7 +11,7 @@ const useWindowSize = () => {
     return size;
 };
 
-const CourseCard = ({ title, level, index, isExpanded, onToggle, isAnyExpanded, ...props }) => {
+const CourseCard = ({ title, level, index, isExpanded, onToggle, isAnyExpanded, isMobile, ...props }) => {
     const isOtherExpanded = isAnyExpanded && !isExpanded;
 
     const images = [
@@ -52,23 +52,28 @@ const CourseCard = ({ title, level, index, isExpanded, onToggle, isAnyExpanded, 
         return `${val * 0.05}px`;
     });
 
+    const cardWidth = isMobile ? '85vw' : '300px';
+    const expandedWidth = isMobile ? '90vw' : '800px';
+    const scaleValue = isMobile ? 0.98 : 0.95;
+
     return (
         <motion.div
             layout
             onClick={onToggle}
             initial={false}
             animate={{
-                width: isExpanded ? '800px' : '300px',
-                scale: isOtherExpanded ? 0.95 : 1,
+                width: isExpanded ? expandedWidth : cardWidth,
+                scale: isOtherExpanded ? scaleValue : 1,
                 opacity: isOtherExpanded ? 0.5 : 1,
             }}
             whileHover={!isExpanded && !isOtherExpanded ? { y: -15, transition: { duration: 0.3, ease: "easeOut" } } : {}}
             style={{
-                height: '520px',
+                height: isMobile && isExpanded ? 'auto' : '520px',
+                minHeight: '520px',
                 backgroundColor: '#fff',
                 border: '1px solid #eee',
                 display: 'flex',
-                flexDirection: isExpanded ? 'row' : 'column',
+                flexDirection: isExpanded && isMobile ? 'column' : (isExpanded ? 'row' : 'column'),
                 position: 'relative',
                 cursor: 'pointer',
                 overflow: 'hidden',
@@ -89,11 +94,12 @@ const CourseCard = ({ title, level, index, isExpanded, onToggle, isAnyExpanded, 
             <motion.div
                 layout="position"
                 style={{
-                    width: isExpanded ? '400px' : '100%',
-                    height: isExpanded ? '100%' : '300px',
+                    width: isExpanded && !isMobile ? '400px' : '100%',
+                    height: isExpanded && isMobile ? '250px' : (isExpanded ? '100%' : '300px'),
                     position: 'relative',
                     overflow: 'hidden',
-                    backgroundColor: '#111'
+                    backgroundColor: '#111',
+                    flexShrink: 0
                 }}
             >
                 <motion.img
@@ -126,7 +132,7 @@ const CourseCard = ({ title, level, index, isExpanded, onToggle, isAnyExpanded, 
                 layout
                 style={{
                     flex: 1,
-                    padding: isExpanded ? '50px' : '20px', // Reduced padding for collapsed
+                    padding: isExpanded ? (isMobile ? '25px' : '50px') : '20px',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
@@ -154,7 +160,7 @@ const CourseCard = ({ title, level, index, isExpanded, onToggle, isAnyExpanded, 
 
                     <h3
                         style={{
-                            fontSize: isExpanded ? '28px' : '18px',
+                            fontSize: isExpanded ? (isMobile ? '24px' : '28px') : '18px',
                             lineHeight: 1.2,
                             fontWeight: 900,
                             marginBottom: '20px',
@@ -163,7 +169,7 @@ const CourseCard = ({ title, level, index, isExpanded, onToggle, isAnyExpanded, 
                             wordBreak: 'keep-all',
                             overflowWrap: 'break-word',
                             whiteSpace: 'normal',
-                            width: isExpanded ? '100%' : 'auto',
+                            width: '100%',
                             transition: 'font-size 0.3s ease'
                         }}
                     >
@@ -195,7 +201,7 @@ const CourseCard = ({ title, level, index, isExpanded, onToggle, isAnyExpanded, 
                                         visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
                                     }}
                                     style={{
-                                        fontSize: '16px',
+                                        fontSize: isMobile ? '14px' : '16px',
                                         lineHeight: 1.6,
                                         marginBottom: '30px',
                                         color: '#444',
@@ -206,7 +212,7 @@ const CourseCard = ({ title, level, index, isExpanded, onToggle, isAnyExpanded, 
                                     {courseDetails[index].desc}
                                 </motion.p>
 
-                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                                <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '12px' }}>
                                     {courseDetails[index].highlights.map((item, i) => (
                                         <motion.div
                                             key={i}
@@ -305,10 +311,17 @@ const Courses = () => {
         if (isOpening) {
             // Spring animate scroll to center the card
             // Approximate position calculation
-            const cardWidth = 300;
-            const gap = 40;
+            const cardBaseWidth = isMobile ? windowWidth * 0.85 : 300; // 85vw or 300px
+            const expandedWidth = isMobile ? windowWidth * 0.90 : 800; // 90vw or 800px
+            const gap = isMobile ? 20 : 40;
             const paddingLeft = isMobile ? windowWidth * 0.05 : windowWidth * 0.5;
-            const cardCenter = paddingLeft + (index * (cardWidth + gap)) + (800 / 2); // 800 is expanded width
+
+            // Calculate center of the card
+            let currentOffset = paddingLeft;
+            for (let i = 0; i < index; i++) {
+                currentOffset += cardBaseWidth + gap;
+            }
+            const cardCenter = currentOffset + (expandedWidth / 2);
 
             // We want cardCenter to be at windowWidth / 2
             // Since x is scroll-driven, we need to find the scroll position
@@ -321,7 +334,7 @@ const Courses = () => {
             // x = -width * progress => progress = -x / width
             // targetX = (windowWidth / 2) - cardCenter
             const targetX = (windowWidth / 2) - cardCenter;
-            const targetProgress = Math.max(0, Math.min(1, -targetX / width));
+            const targetProgress = Math.max(0, Math.min(1, -targetX / (width || 1))); // prevent division by zero
             const targetScrollY = sectionTop + targetProgress * (sectionHeight - viewHeight);
 
             animate(window.scrollY, targetScrollY, {
@@ -365,12 +378,12 @@ const Courses = () => {
     return (
 
         <section id="courses" style={{ backgroundColor: '#fcfcfc' }}>
-            <div ref={targetRef} style={{ height: '250vh', position: 'relative' }}>
+            <div ref={targetRef} style={{ height: '300vh', position: 'relative' }}>
                 <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', backgroundColor: '#fcfcfc' }}>
                     {/* Fixed Title Layer */}
                     <div style={{
                         position: 'absolute',
-                        top: isMobile ? '120px' : '50px',
+                        top: isMobile ? '80px' : '50px',
                         left: '5vw',
                         zIndex: 1,
                         width: '90vw'
@@ -398,10 +411,10 @@ const Courses = () => {
                     </div>
 
                     {/* Horizontal Track Layer */}
-                    <div style={{ position: 'absolute', bottom: '6vh', left: 0, width: '100%', zIndex: 5 }}>
+                    <div style={{ position: 'absolute', bottom: isMobile ? '10vh' : '6vh', left: 0, width: '100%', zIndex: 5 }}>
                         <motion.div
                             ref={carouselRef}
-                            style={{ x, display: 'flex', gap: '40px', paddingLeft: isMobile ? '5vw' : '50vw', paddingRight: '5vw', alignItems: 'flex-end', width: 'max-content' }}
+                            style={{ x, display: 'flex', gap: isMobile ? '20px' : '40px', paddingLeft: isMobile ? '5vw' : '50vw', paddingRight: '5vw', alignItems: 'flex-end', width: 'max-content' }}
                         >
                             {[
                                 { title: "LEVEL 1 DISCOVERY", level: "BEGINNER" },
@@ -419,6 +432,7 @@ const Courses = () => {
                                     isAnyExpanded={expandedIndex !== null}
                                     onToggle={() => handleToggle(i)}
                                     parentX={x}
+                                    isMobile={isMobile}
                                 />
                             ))}
                         </motion.div>

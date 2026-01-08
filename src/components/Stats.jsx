@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView, useSpring } from 'framer-motion';
 
 const Counter = ({ value, label }) => {
     const ref = useRef(null);
@@ -27,17 +27,18 @@ const Stats = () => {
         offset: ["start end", "end start"]
     });
 
-    const xText = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
+    const xRaw = useTransform(scrollYProgress, [0, 1], ["500%", "-2600%"]);
+    const xText = useSpring(xRaw, { stiffness: 60, damping: 20 });
 
     return (
         <section style={{ backgroundColor: '#121212', color: '#F0EEE9', padding: '150px 0', overflow: 'hidden' }}>
-            <div className="container">
+            <div className="container" ref={containerRef}>
                 <div style={{ marginBottom: '100px' }}>
                     <div className="mono" style={{ border: '1px solid #F0EEE9', display: 'inline-block', padding: '8px 20px', borderRadius: '30px', marginBottom: '40px' }}>
                         (03) PERFORMANCE
                     </div>
 
-                    <motion.div style={{ x: xText, fontSize: '12vw', lineHeight: 0.8, fontWeight: 900, whiteSpace: 'nowrap', fontFamily: 'var(--font-display)' }}>
+                    <motion.div style={{ x: xText, fontSize: '18vw', lineHeight: 0.8, fontWeight: 900, whiteSpace: 'nowrap', fontFamily: 'var(--font-display)', willChange: 'transform' }}>
                         TRUSTED BY DIVERS
                     </motion.div>
                 </div>
