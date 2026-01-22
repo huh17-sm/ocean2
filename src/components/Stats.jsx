@@ -33,8 +33,20 @@ const reviews = [
 ];
 
 const MobileReviews = () => {
-    const scrollRef = useRef(null);
+    const targetRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: targetRef,
+        offset: ["start start", "end end"]
+    });
+
+    const smoothProgress = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001
+    });
+
     const [activePage, setActivePage] = useState(0);
+    const [xRange, setXRange] = useState(["0px", "0px"]);
 
     // Chunk reviews into groups of 3
     const reviewChunks = [];
@@ -42,82 +54,118 @@ const MobileReviews = () => {
         reviewChunks.push(reviews.slice(i, i + 3));
     }
 
-    const handleScroll = () => {
-        if (scrollRef.current) {
-            const scrollLeft = scrollRef.current.scrollLeft;
-            // Card width is 80vw. Gap is 20px (approx). 
-            // Better to use scroll footprint.
-            // Total scroll width approx = numChunks * cardWidth.
-            // But with padding centered, snap points are regular.
-            const index = Math.round(scrollLeft / (window.innerWidth * 0.8));
-            setActivePage(index);
-        }
-    };
+    useEffect(() => {
+        const updateRange = () => {
+            const vw = window.innerWidth;
+            // 80vw + 20px gap
+            const cardWidth = vw * 0.8 + 20;
+            // We need to move 2 cards worth of distance
+            const totalDistance = cardWidth * 2;
+            setXRange(["0px", `-${totalDistance}px`]);
+        };
+
+        updateRange();
+        window.addEventListener('resize', updateRange);
+        return () => window.removeEventListener('resize', updateRange);
+    }, []);
+
+    const x = useTransform(smoothProgress, [0, 1], xRange);
+
+    useMotionValueEvent(smoothProgress, "change", (latest) => {
+        const newIndex = Math.min(
+            Math.max(Math.round(latest * (reviewChunks.length - 1)), 0),
+            reviewChunks.length - 1
+        );
+        setActivePage(newIndex);
+    });
 
     return (
-        <div style={{ position: 'relative', marginTop: '50px', marginLeft: '-40px', marginRight: '-40px', width: '100vw', marginBottom: '50px' }}>
-            <div
-                ref={scrollRef}
-                onScroll={handleScroll}
-                style={{
+        <div ref={targetRef} style={{ height: '300vh', position: 'relative' }}>
+            <div style={{
+                position: 'sticky',
+                top: 0,
+                height: '100vh',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'flex-start', // Important: Align left to prevent centering
+                overflow: 'hidden'
+            }}>
+                <motion.div style={{
+                    x,
                     display: 'flex',
+                    flexWrap: 'nowrap',
                     gap: '20px',
-                    overflowX: 'auto',
-                    scrollSnapType: 'x mandatory',
-                    padding: '0 10vw', // Center the 80vw cards
-                    scrollbarWidth: 'none', // Firefox
-                    msOverflowStyle: 'none', // IE
-                    WebkitOverflowScrolling: 'touch' // iOS Momentum
-                }}
-            >
-                {reviewChunks.map((chunk, chunkIndex) => (
-                    <div key={chunkIndex} style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '15px',
-                        width: '80vw',
-                        flexShrink: 0,
-                        scrollSnapAlign: 'center'
-                    }}>
-                        {chunk.map((review, i) => {
-                            const realIndex = chunkIndex * 3 + i;
-                            return (
-                                <div key={i} style={{
-                                    border: '1px solid rgba(255,255,255,0.2)',
-                                    borderRadius: '8px',
-                                    backgroundColor: '#1a1a1a',
-                                    padding: '20px',
-                                }}>
-                                    <div className="mono" style={{ color: 'var(--color-accent)', fontSize: '11px', marginBottom: '8px' }}>
-                                        REVIEW {String(realIndex + 1).padStart(2, '0')}
+                    paddingLeft: '10vw',
+                    width: 'max-content',
+                    willChange: 'transform'
+                }}>
+                    {reviewChunks.map((chunk, chunkIndex) => (
+                        <div key={chunkIndex} style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '15px',
+                            width: '80vw',
+                            flexShrink: 0,
+                        }}>
+                            {chunk.map((review, i) => {
+                                const realIndex = chunkIndex * 3 + i;
+                                return (
+                                    <div key={i} style={{
+                                        border: '1px solid rgba(255,255,255,0.2)',
+                                        borderRadius: '8px',
+                                        backgroundColor: '#1a1a1a',
+                                        padding: '20px',
+                                    }}>
+                                        <div className="mono" style={{ color: 'var(--color-accent)', fontSize: '11px', marginBottom: '8px' }}>
+                                            REVIEW {String(realIndex + 1).padStart(2, '0')}
+                                        </div>
+                                        <p style={{ fontSize: '14px', lineHeight: 1.5, opacity: 0.9, wordBreak: 'keep-all', margin: 0 }}>
+                                            "{review}"
+                                        </p>
                                     </div>
-                                    <p style={{ fontSize: '14px', lineHeight: 1.5, opacity: 0.9, wordBreak: 'keep-all', margin: 0 }}>
-                                        "{review}"
-                                    </p>
-                                </div>
-                            );
-                        })}
-                    </div>
-                ))}
-            </div>
+                                );
+                            })}
+                        </div>
+                    ))}
+                </motion.div>
 
-            {/* Pagination Dots */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', marginTop: '30px' }}>
-                {reviewChunks.map((_, i) => (
-                    <div
-                        key={i}
-                        style={{
-                            width: '8px',
-                            height: '8px',
-                            borderRadius: '50%',
-                            backgroundColor: activePage === i ? 'var(--color-accent)' : '#333',
-                            transition: 'background-color 0.3s ease'
-                        }}
-                    />
-                ))}
-            </div>
-            <div style={{ textAlign: 'center', marginTop: '20px', opacity: 0.5 }}>
-                <span className="mono" style={{ fontSize: '10px' }}>SWIPE FOR MORE</span>
+                {/* Pagination Dots */}
+                <div style={{
+                    position: 'absolute',
+                    bottom: '50px',
+                    left: 0,
+                    right: 0,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    gap: '12px',
+                    pointerEvents: 'none'
+                }}>
+                    {reviewChunks.map((_, i) => (
+                        <div
+                            key={i}
+                            style={{
+                                width: '8px',
+                                height: '8px',
+                                borderRadius: '50%',
+                                backgroundColor: activePage === i ? 'var(--color-accent)' : '#333',
+                                transition: 'background-color 0.3s ease'
+                            }}
+                        />
+                    ))}
+                </div>
+
+                <div style={{
+                    position: 'absolute',
+                    bottom: '20px',
+                    left: 0,
+                    right: 0,
+                    textAlign: 'center',
+                    opacity: 0.5,
+                    pointerEvents: 'none'
+                }}>
+                    <span className="mono" style={{ fontSize: '10px' }}>SCROLL TO EXPLORE</span>
+                </div>
             </div>
         </div>
     );

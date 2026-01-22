@@ -50,6 +50,12 @@
   /* Hide default cursor */
 }
 
+@media (max-width: 768px) {
+  * {
+    cursor: auto !important;
+  }
+}
+
 body {
   font-family: var(--font-primary);
   background-color: var(--color-primary);
